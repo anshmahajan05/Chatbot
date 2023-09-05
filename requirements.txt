@@ -9,3 +9,4 @@ COVID19Py
 googlesearch-python
 flask
 flask_wtf
+pytz
