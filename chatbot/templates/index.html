@@ -171,6 +171,27 @@
     background-size: cover;
 	}
 </style>
+<script>
+	// Function to update the time in the div
+	function updateTime() {
+		// Get the current time
+		var currentTime = new Date();
+
+		// Format the time as HH:mm (e.g., 12:34)
+		var hours = currentTime.getHours().toString().padStart(2, '0');
+		var minutes = currentTime.getMinutes().toString().padStart(2, '0');
+		var timeString = hours + ':' + minutes;
+
+		// Update the content of the div
+		document.querySelector('.msg-info-time').textContent = timeString;
+	}
+
+	// Call updateTime when the page loads
+	window.addEventListener('load', updateTime);
+
+	// Optionally, you can set up a timer to update the time regularly (e.g., every second)
+	// setInterval(updateTime, 1000);
+</script>
 </head>
 
 <body>
@@ -186,12 +207,12 @@
 
     <main class="msger-chat">
       <div class="msg left-msg">
-        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/2597/2597330.svg)"></div>
+        <div class="msg-img" style="background-image: url(https://www.internetandtechnologylaw.com/files/2019/06/iStock-872962368-chat-bots.jpg)"></div>
 
         <div class="msg-bubble">
           <div class="msg-info">
             <div class="msg-info-name">Ted</div>
-            <div class="msg-info-time">12:45</div>
+            <div class="msg-info-time"></div>
           </div>
 
           <div class="msg-text">
@@ -229,8 +250,8 @@
 
 
     // Icons made by Freepik from www.flaticon.com
-    const BOT_IMG = "https://image.flaticon.com/icons/svg/2597/2597330.svg";
-    const PERSON_IMG = "https://image.flaticon.com/icons/svg/3048/3048122.svg";
+    const BOT_IMG = "https://www.internetandtechnologylaw.com/files/2019/06/iStock-872962368-chat-bots.jpg";
+    const PERSON_IMG = "https://cdn3.iconfinder.com/data/icons/web-design-and-development-2-6/512/87-512.png";
     const BOT_NAME = "Ted";
     const PERSON_NAME = "You";
 

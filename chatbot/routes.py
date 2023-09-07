@@ -96,7 +96,7 @@ def get_response(return_list,intents_json,text):
         for i in range(10):
             x+=(str(i + 1))
             x+='. '+str(results[i][0])
-            x+=(str(results[i][1]))
+            x+=" "+(str(results[i][1]))
             if i!=9:
                 x+='\n'
 
