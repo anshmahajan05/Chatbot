@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [{
         "src": "*.py",
-        "use": "@anshmahajan05/Chatbot"
+        "use": "@liudonghua123/now-flask"
     }],
     "routes": [{
         "src": "(.*)",
