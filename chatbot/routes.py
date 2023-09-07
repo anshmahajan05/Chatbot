@@ -109,7 +109,7 @@ def get_response(return_list,intents_json,text):
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             index = 0
-            str = ""
+            x = ""
             
             # Find the live match updates
             live_matches = soup.find_all('div', class_='cb-mtch-lst cb-col cb-col-100 cb-tms-itm')
@@ -123,10 +123,10 @@ def get_response(return_list,intents_json,text):
                 mnum = match.find('span', class_='text-gray').text.strip()
                 status = match.find('div', class_='cb-text-live').text.strip()
                 
-                str += f"{index}. {srs} - {mnum} : {status} \n"
+                x += f"{index}. {srs} - {mnum} : {status} \n"
         else:
             print("Failed to fetch cricket updates")
-        return str, 'cricket'
+        return x, 'cricket'
 
     if tag=='song':
         chart=billboard.ChartData('hot-100')
@@ -149,29 +149,19 @@ def get_response(return_list,intents_json,text):
 
 
     if tag=='covid19':
-
-        covid19=COVID19Py.COVID19(data_source='jhu')
+        # Define the base URL for the disease.sh API
+        base_url = "https://disease.sh/v3/covid-19"
         country=text.split(':')[1].strip()
         x=''
-        if country.lower()=='world':
-            latest_world=covid19.getLatest()
-            x+='Confirmed Cases:'+str(latest_world['confirmed'])+' Deaths:'+str(latest_world['deaths'])
+        try:
+            if country.lower()=='world':
+                global_data = requests.get(f"{base_url}/all").json()
+            else:
+                global_data = requests.get(f"{base_url}/countries/{country}").json()
+            x+='Todays Confirmed Cases:'+str(global_data['todayCases'])+'\nTodays Deaths:'+str(global_data['todayDeaths'])+'\nTodays Recovered:'+str(global_data['todayRecovered'])+'\nActive:'+str(global_data['active'])+'\nCritical:'+str(global_data['critical'])
             return x,'covid19'
-        else:
-            latest=covid19.getLocations()
-            latest_conf=[]
-            latest_deaths=[]
-            for i in range(len(latest)):
-
-                if latest[i]['country'].lower()== country.lower():
-                    latest_conf.append(latest[i]['latest']['confirmed'])
-                    latest_deaths.append(latest[i]['latest']['deaths'])
-            latest_conf=np.array(latest_conf)
-            latest_deaths=np.array(latest_deaths)
-            x+='Confirmed Cases:'+str(np.sum(latest_conf))+' Deaths:'+str(np.sum(latest_deaths))
-            return x,'covid19'
-
-
+        except Exception as e:
+            print("error: ", e)
 
     list_of_intents= intents_json['intents']
     for i in list_of_intents:
