@@ -2,7 +2,7 @@ from chatbot import app
 from flask import render_template,flash, request
 from chatbot.forms import chatbotform
 from chatbot.__init__ import model,words,classes,intents
-
+from bs4 import BeautifulSoup
 import nltk
 nltk.download('all')
 import pickle
@@ -18,7 +18,7 @@ import billboard
 import time
 from pygame import mixer
 import COVID19Py
-
+from pycricbuzz import Cricbuzz
 from nltk.stem import WordNetLemmatizer
 lemmatizer=WordNetLemmatizer()
 
@@ -103,10 +103,30 @@ def get_response(return_list,intents_json,text):
         return x,'news'
 
     if tag=='cricket':
-        c = Cricbuzz()
-        matches = c.matches()
-        for match in matches:
-            print(match['srs'],' ',match['mnum'],' ',match['status'])
+        url = "https://www.cricbuzz.com/cricket-match/live-scores"
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            index = 0
+            str = ""
+            
+            # Find the live match updates
+            live_matches = soup.find_all('div', class_='cb-mtch-lst cb-col cb-col-100 cb-tms-itm')
+
+            if not live_matches:
+                return "No live matches found.", 'cricket'
+            
+            for match in live_matches:
+                index += 1
+                srs = match.find('a', class_='text-hvr-underline text-bold').text.strip()
+                mnum = match.find('span', class_='text-gray').text.strip()
+                status = match.find('div', class_='cb-text-live').text.strip()
+                
+                str += f"{index}. {srs} - Match {mnum}: {status} \n"
+        else:
+            print("Failed to fetch cricket updates")
+        return str, 'cricket'
 
     if tag=='song':
         chart=billboard.ChartData('hot-100')

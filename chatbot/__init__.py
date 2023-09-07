@@ -1,6 +1,6 @@
 import flask
 from flask import Flask
-from chatbotconfig import Config
+from chatbot.chatbotconfig import Config
 
 app=Flask(__name__)
 app.config.from_object(Config)
