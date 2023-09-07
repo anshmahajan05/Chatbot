@@ -123,7 +123,7 @@ def get_response(return_list,intents_json,text):
                 mnum = match.find('span', class_='text-gray').text.strip()
                 status = match.find('div', class_='cb-text-live').text.strip()
                 
-                str += f"{index}. {srs} - Match {mnum}: {status} \n"
+                str += f"{index}. {srs} - {mnum} : {status} \n"
         else:
             print("Failed to fetch cricket updates")
         return str, 'cricket'

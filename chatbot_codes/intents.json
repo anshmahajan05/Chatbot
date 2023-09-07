@@ -93,13 +93,13 @@
                 "What support is offered"
             ],
             "responses": [
-                "I am a general purpose chatbot. My capabilities are : \n 1. I can chat with you. Try asking me for jokes or riddles! \n 2. Ask me the date and time \n 3. I can google search for you. Use format google: your query \n 4. I can get the present weather for any city. Use format weather: city name \n 5. I can get you the top 10 trending news in India. Use keywords 'Latest News' \n 6. I can get you the top 10 trending songs globally. Type 'songs' \n 7. I can set a timer for you. Enter 'set a timer: minutes to timer' \n 8. I can get the present Covid stats for any country. Use 'covid 19: world' or 'covid 19: country name' \n For suggestions to help me improve, send an email to ted.thedlbot.suggestions@gmail.com . Thank you!! "
+                "I am a general purpose chatbot. My capabilities are : \n 1. I can chat with you. Try asking me for jokes or riddles! \n 2. Ask me the date and time \n 3. I can google search for you. Use format google: your query \n 4. I can get the present weather for any city. Use format weather: city name \n 5. I can get you the top 10 trending news in India. Use keywords 'Latest News' \n 6. I can get you the top 10 trending songs globally. Type 'songs' \n 7. I can set a timer for you. Enter 'set a timer: minutes to timer' \n 8. I can get the present Covid stats for any country. Use 'covid 19: world' or 'covid 19: country name' \n 9. I can provide you live cricket matchs update. Type: Live Cricket \nFor suggestions to help me improve, send an email to ted.thedlbot.suggestions@gmail.com . Thank you!! "
             ],
             "context": [
                 ""
             ]
         },
-        
+
         {
             "tag": "jokes",
             "patterns": [
@@ -141,7 +141,7 @@
                 "what is the date",
                 "date",
                 "time",
-                "tell me the date","day","what day is is today"
+                "tell me the date", "day", "what day is is today"
             ],
             "responses": [
                 "Date and Time"
@@ -153,7 +153,7 @@
                 "Whats up",
                 "Wazzup",
                 "How are you",
-                "sup","How you doing"
+                "sup", "How you doing"
             ],
             "responses": [
                 "All good..What about you?"
@@ -186,9 +186,9 @@
         {
             "tag": "insult",
             "patterns": [
-                
+
                 "you are dumb",
-                
+
                 "shut up",
                 "idiot"
             ],
@@ -219,7 +219,7 @@
                 "Yeah!"
             ]
         },
-        
+
         {
             "tag": "weather",
             "patterns": [
@@ -312,7 +312,11 @@
             "tag": "cricket",
             "patterns": [
                 "current cricket matches",
-                "cricket score"
+                "cricket score",
+                "live cricket",
+                "live cricket match",
+                "live cricket score",
+                "today cricket match"
             ],
             "responses": [
                 "..."
@@ -337,7 +341,7 @@
                 "i am good",
                 "I'm good",
                 "i am fine",
-                " i'm fine","good"
+                " i'm fine", "good"
             ],
             "responses": [
                 "Good to know!"
@@ -364,13 +368,14 @@
         {
             "tag": "suggest",
             "patterns": [
-                "you are useless","useless","suggest","suggestions","you are bad"
+                "you are useless", "useless", "suggest", "suggestions", "you are bad"
             ],
             "responses": [
                 "I am Sorry to Hear that"
             ]
         },
-            {"tag": "riddle",
+        {
+            "tag": "riddle",
             "patterns": [
                 "Ask me a riddle",
                 "Ask me a question",
@@ -394,7 +399,7 @@
         {
             "tag": "age",
             "patterns": [
-                "how old are you","when were you made","what is your age"
+                "how old are you", "when were you made", "what is your age"
             ],
             "responses": [
                 "I was made in 2023, if that's what you are asking!"
