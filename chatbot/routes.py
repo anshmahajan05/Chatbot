@@ -121,7 +121,7 @@ def get_response(return_list,intents_json,text):
                 index += 1
                 srs = match.find('a', class_='text-hvr-underline text-bold').text.strip()
                 mnum = match.find('span', class_='text-gray').text.strip()
-                status = match.find('div', class_='cb-text-live').text.strip()
+                status = match.find('div', class_='cb-text-complete').text.strip()
                 
                 x += f"{index}. {srs} - {mnum} : {status} \n"
         else:
@@ -157,8 +157,8 @@ def get_response(return_list,intents_json,text):
             if country.lower()=='world':
                 global_data = requests.get(f"{base_url}/all").json()
             else:
-                global_data = requests.get(f"{base_url}/countries/{country}").json()
-            x+='Todays Confirmed Cases:'+str(global_data['todayCases'])+'\nTodays Deaths:'+str(global_data['todayDeaths'])+'\nTodays Recovered:'+str(global_data['todayRecovered'])+'\nActive:'+str(global_data['active'])+'\nCritical:'+str(global_data['critical'])
+                global_data = requests.get(f"{base_url}/countries/{country.lower()}").json()
+            x+='Stats for COVID19: \nTodays Confirmed Cases:'+str(global_data['todayCases'])+'\nTodays Deaths:'+str(global_data['todayDeaths'])+'\nTodays Recovered:'+str(global_data['todayRecovered'])+'\nActive:'+str(global_data['active'])+'\nCritical:'+str(global_data['critical'])
             return x,'covid19'
         except Exception as e:
             print("error: ", e)
