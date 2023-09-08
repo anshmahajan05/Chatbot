@@ -133,7 +133,19 @@ def get_response(return_list,intents_json,text):
         x='The top 10 songs at the moment are: \n'
         for i in range(10):
             song=chart[i]
-            x+=str(i+1)+'. '+str(song.title)+'- '+str(song.artist)
+            x+=str(i+1)+'. '+str(song.title)+'- '+str(song.artist) #+ "\t Listen: " + str(song.spotifyLink)
+            import spotipy
+            from spotipy.oauth2 import SpotifyClientCredentials
+            client_id = '7262d1a4a55a46beb973fa784b78503f'
+            client_secret = '9d3382e5e1ae483baaf676178143cc17'
+            sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+            results = sp.search(q=song, type='track')
+            if results['tracks']['total'] > 0:
+                track = results['tracks']['items'][0]
+                spotify_link = track['external_urls']['spotify']
+                x+=f"\t Spotify Link: {spotify_link}"
+            else:
+                x+="\t Song not found on Spotify."
             if i!=9:
                 x+='\n'
         return x,'songs'
