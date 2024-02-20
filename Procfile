@@ -1,1 +1,1 @@
-web: gunicorn chatbot:app
+web: streamlit run chatbot.py
