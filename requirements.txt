@@ -1,5 +1,5 @@
-keras
-tensorflow
+keras==2.8.0
+tensorflow==2.8.2
 nltk
 requests
 billboard.py
@@ -10,5 +10,3 @@ googlesearch-python
 flask
 flask_wtf
 pytz
-gunicorn==20.1.0
-protobuf==3.19.0
