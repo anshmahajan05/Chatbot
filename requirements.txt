@@ -10,3 +10,4 @@ googlesearch-python
 flask
 flask_wtf
 pytz
+protobuf==3.19.0
