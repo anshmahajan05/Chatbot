@@ -1,5 +1,5 @@
-keras==2.8.0
-tensorflow==2.8.2
+keras
+tensorflow
 nltk
 requests
 billboard.py
