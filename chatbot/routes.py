@@ -1,5 +1,5 @@
 from chatbot import app
-from flask import render_template,flash, request
+from flask import render_template,flash, request, jsonify
 from chatbot.forms import chatbotform
 from chatbot.__init__ import model,words,classes,intents
 from bs4 import BeautifulSoup
@@ -225,12 +225,11 @@ def home():
 
 @app.route("/get", methods=['GET','POST'])
 def chatbot():
-    # try:
-    #     userText = str(request.args.get('msg'))
-    #     print(userText)
-    #     resp=response(userText)
-    # except Exception as e:
-    #     error_message = "An error occurred: " + str(e)
-    #     resp = error_message
-    resp="hi"
-    return resp
+    try:
+        userText = str(request.args.get('msg'))
+        print(userText)
+        resp=response(userText)
+    except Exception as e:
+        error_message = "An error occurred: " + str(e)
+        resp = error_message
+    return jsonify({"message": resp})

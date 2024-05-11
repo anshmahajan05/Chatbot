@@ -328,7 +328,7 @@
 				$.get("/get", { msg: rawText }).done(function (data) {
 					console.log(rawText);
 					console.log(data);
-					msgText = data;
+					msgText = data.message;
 					msgText = msgText.split("\n");
 					var i;
 					for (i = 0; i < msgText.length; i++) {
