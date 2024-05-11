@@ -1,5 +1,6 @@
 {
-    "intents": [{
+    "intents": [
+        {
             "tag": "google",
             "patterns": [
                 "google",
@@ -180,7 +181,7 @@
                 "who programmed you"
             ],
             "responses": [
-                "I was made by Ansh Mahajan and his group."
+                "I was made by Ansh Mahajan. His Portfolio Profile: <a href='https://anshmahajan05.vercel.app' target='_blank'>Click Here<a>"
             ]
         },
         {
@@ -229,15 +230,15 @@
             ]
         },
         {
-            "tag": "karan",
+            "tag": "ansh",
             "patterns": [
                 "who is he",
                 "who is that",
-                "who is karan",
-                "karan malik"
+                "who is ansh",
+                "ansh mahajan"
             ],
             "responses": [
-                "He is a college student"
+                "He is a passionate coder who loves crafting cool websites and a data science enthusiast. With a keen eye for detail and a knack for problem-solving, he is dedicated to pushing the boundaries of technology. <br>His Portfolio: <a href='https://anshmahajan05.vercel.app'  target='_blank'>Click here</a><br>You can get his social links from there."
             ]
         },
         {
@@ -248,7 +249,7 @@
                 "contact creator"
             ],
             "responses": [
-                "You can contact my creator at his instagram profile : @anshmahajan05"
+                "You can contact my creator at his portfolio profile : <a href='https://anshmahajan05.vercel.app/contact' target='_blank'>Click here</a> or mail him on <a href='mailto:anshmahajan05102002@gmail.com' target='_blank'>Click here</a>"
             ]
         },
         {
