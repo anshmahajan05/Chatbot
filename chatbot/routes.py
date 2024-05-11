@@ -132,22 +132,22 @@ def get_response(return_list,intents_json,text):
                 if not live_matches:
                     x+= "No matches found."
             
-            for match in live_matches:
-                srs = match.find('a', class_='text-hvr-underline text-bold').text.strip()
-                mnum = match.find('span', class_='text-gray').text.strip()
-                try:
-                    status = match.find('div', class_='cb-text-complete').text.strip()
-                except:
+                for match in live_matches:
+                    srs = match.find('a', class_='text-hvr-underline text-bold').text.strip()
+                    mnum = match.find('span', class_='text-gray').text.strip()
                     try:
-                        status = match.find('div', class_='cb-text-live').text.strip()
+                        status = match.find('div', class_='cb-text-complete').text.strip()
                     except:
-                        status = "Upcoming Match"
+                        try:
+                            status = match.find('div', class_='cb-text-live').text.strip()
+                        except:
+                            status = "Upcoming Match"
 
-                x += f"<li> {srs} - {mnum} : {status} </li>"
-            x+="</ol>"
-            x+="</li>"
-        else:
-            print("Failed to fetch cricket updates")
+                    x += f"<li> {srs} - {mnum} : {status} </li>"
+                x+="</ol>"
+                x+="</li>"
+            else:
+                print("Failed to fetch cricket updates")
         x+="</ul>"
         return x, 'cricket'
 

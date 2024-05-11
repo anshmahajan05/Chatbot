@@ -1,85 +1,149 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ted, A Deep-Learning Chatbot</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://cdn3.iconfinder.com/data/icons/vector-robots-set-concept-in-blue-color-style/1772/robo_advisor_robot_assistant_chatbot-256.png" />
-<link rel="icon" href="https://image.flaticon.com/icons/svg/2597/2597330.svg">
-<style media="screen">
+<html
+	lang="en"
+	dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Ted, A Deep-Learning Chatbot</title>
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="https://cdn3.iconfinder.com/data/icons/vector-robots-set-concept-in-blue-color-style/1772/robo_advisor_robot_assistant_chatbot-256.png" />
+		<link
+			rel="icon"
+			href="https://image.flaticon.com/icons/svg/2597/2597330.svg" />
+		<style>
+			body {
+				background-image: url(https://media.istockphoto.com/photos/light-blue-background-with-pattern-picture-id624409380?k=6&m=624409380&s=612x612&w=0&h=XYHFBLtqTp3EMuKDtJMzTW5wTzkFbalhfArb14U6mWI=);
+				background-repeat: no-repeat;
+				background-size: cover;
+				min-height: 95vh;
+			}
 
-/*body{
-  background-image: url(https://s3.envato.com/files/229501069/Preview_Image_Di.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: lighten;
-}*/
-body{
-  background-image: url(https://media.istockphoto.com/photos/light-blue-background-with-pattern-picture-id624409380?k=6&m=624409380&s=612x612&w=0&h=XYHFBLtqTp3EMuKDtJMzTW5wTzkFbalhfArb14U6mWI=);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-#chat{
-   position: fixed;
-   left: 815px;
-   font-size: 18px;
-   bottom: 150px;
-   color: white;
-   background-color: black;
-   height: 50px;
-   width: 140px;
-   border-radius: 12px;
-}
-h1{
-  position: fixed;
-  left: 650px;
-  top: 40px;
-  font-size: 80px;
-  color: #08088A;
-  font-family:sans-serif  ;
-}
+			#chat {
+				font-size: 18px;
+				color: white;
+				background-color: black;
+				width: fit-content;
+				padding: 15px;
+				border-radius: 12px;
+				border-radius: 12px;
+			}
 
-h2{
-  position: fixed;
-  left: 500px;
-  top: 130px;
-  font-size: 60px;
-  color: #08088A;
-  font-family:sans-serif;
-}
+			h1 {
+				font-size: 80px;
+				color: #08088a;
+				font-family: sans-serif;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				text-align: center;
+			}
 
-.boxed{
+			h2 {
+				font-size: 60px;
+				color: #08088a;
+				font-family: sans-serif;
+				margin-top: 0px;
+				text-align: center;
+			}
 
-  width: 900px;
-  height: 300px;
-  position: fixed;
-  left: 460px;
-  top: 340px;
-font-size: 24px;
-color: #08088A;
-font-family: sans-serif;
-font-weight: bold;
-text-align: justify;
+			.boxed {
+				font-size: 24px;
+				color: #08088a;
+				font-family: sans-serif;
+				font-weight: bold;
+				text-align: justify;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				gap: 40px;
+				align-items: center;
+				text-align: center;
+			}
 
-}
+			.main-container {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				margin-top: 5%;
+			}
 
-</style>
-  </head>
-  <body>
+			.image-container {
+				width: fit-content;
+				height: fit-content;
+			}
 
-    <br><br><br>
+			.intro-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 80px;
+				gap: 20px;
+			}
 
-  <!--<img src="https://media.istockphoto.com/photos/light-blue-background-with-pattern-picture-id624409380?k=6&m=624409380&s=612x612&w=0&h=XYHFBLtqTp3EMuKDtJMzTW5wTzkFbalhfArb14U6mWI=" style=" height: 770px; width: 1550px; opacity: 0.7; position: fixed; left: 0px; top: 0px;"> -->
-    <img src="https://i.gifer.com/3q63.gif" height="600" width="320" style="position: fixed; left: 70px; top: 120px;">
+			@media only screen and (max-width: 600px) {
+				body {
+					min-height: 100vh;
+				}
+				div.main-container {
+					flex-direction: column;
+					height: 100%;
+					margin-top: 2vh;
+				}
+				.gif-center {
+					height: fit-content;
+					width: fit-content;
+				}
+				.intro-container {
+					padding: 10px;
+				}
 
-    <h1 style=" f"><b>Hi, I am Ted!</b></h1>
-    <h2><b>Your Multi-Purpose Chatbot</b></h2>
+				h1 {
+					font-size: 45px;
+				}
 
-    <div class="boxed">
-  I am a multi-purpose chatbot, who can chat with you and help with your daily tasks. I can access google search , tell the weather, set a timer and much more. To view a complete list of my features and how to access them, message 'help' on the chat screen.
+				h2 {
+					font-size: 35px;
+				}
 
-<input id="chat" type="button" value="Let's Chat" onclick="window.open('/chat','_self')">
-</div>
+				.boxed {
+					font-size: 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!--<img src="https://media.istockphoto.com/photos/light-blue-background-with-pattern-picture-id624409380?k=6&m=624409380&s=612x612&w=0&h=XYHFBLtqTp3EMuKDtJMzTW5wTzkFbalhfArb14U6mWI=" style=" height: 770px; width: 1550px; opacity: 0.7; position: fixed; left: 0px; top: 0px;"> -->
+		<div class="main-container">
+			<div class="gif-container">
+				<img
+					src="https://i.gifer.com/3q63.gif"
+					height="600"
+					width="320"
+					class="gif-center" />
+			</div>
+			<div class="intro-container">
+				<h1 class="heading1"><b>Hi, I am Ted!</b></h1>
+				<h2 class="heading2"><b>Your Multi-Purpose Chatbot</b></h2>
 
-
-  </body>
+				<div class="boxed">
+					I am a multi-purpose chatbot, who can chat with you and help
+					with your daily tasks. I can access google search , tell the
+					weather, set a timer and much more. To view a complete list
+					of my features and how to access them, message 'help' on the
+					chat screen.
+					<br />
+					<input
+						id="chat"
+						type="button"
+						value="Let's Chat"
+						onclick="window.open('/chat','_self')" />
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
