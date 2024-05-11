@@ -1,6 +1,5 @@
 {
-    "intents": [
-        {
+    "intents": [{
             "tag": "google",
             "patterns": [
                 "google",
@@ -92,7 +91,7 @@
                 "What support is offered"
             ],
             "responses": [
-                "I am a general purpose chatbot. My capabilities are : \n 1. I can chat with you. Try asking me for jokes or riddles! \n 2. Ask me the date and time \n 3. I can google search for you. Use format google: your query \n 4. I can get the present weather for any city. Use format weather: city name \n 5. I can get you the top 10 trending news in India. Use keywords 'Latest News' \n 6. I can get you the top 10 trending songs globally. Type 'songs' \n 7. I can set a timer for you. Enter 'set a timer: minutes to timer' \n 8. I can get the present Covid stats for any country. Use 'covid 19: world' or 'covid 19: country name' \n 9. I can provide you live cricket matchs update. Type: Live Cricket \nFor suggestions to help me improve, send an email to ted.thedlbot.suggestions@gmail.com . Thank you!! "
+                "I am a general purpose chatbot. My capabilities are : <br> 1. I can chat with you. Try asking me for jokes or riddles! <br> 2. Ask me the date and time <br> 3. I can google search for you. Use format google: your query <br> 4. I can get the present weather for any city. Use format weather: city name <br> 5. I can get you the top 10 trending news in India. Use keywords 'Latest News' <br> 6. I can get you the top 10 trending songs globally. Type 'songs' <br> 7. I can set a timer for you. Enter 'set a timer: minutes to timer' <br> 8. I can get the present Covid stats for any country. Use 'covid 19: world' or 'covid 19: country name' <br> 9. I can provide you live cricket matchs update. Type: Live Cricket <br>For suggestions to help me improve, send an email to ted.thedlbot.suggestions@gmail.com . Thank you!! "
             ],
             "context": [
                 ""

@@ -89,53 +89,72 @@ def get_response(return_list,intents_json,text):
         open_news_page = requests.get(main_url).json()
         article = open_news_page["articles"]
         results = []
-        x=''
+        x="<ol style='margin-left: 20px;'>"
         for ar in article:
             results.append([ar["title"],ar["url"]])
 
         for i in range(10):
-            x+=(str(i + 1))
-            x+='. '+str(results[i][0])
-            x+=" "+(str(results[i][1]))
-            if i!=9:
-                x+='\n'
+            x+="<li>"
+            x+=f'<a href="{results[i][1]}">'+str(results[i][0])
+            x+="</a>"
+            x+="</li>"
+        x+="</ol>"
 
         return x,'news'
 
     if tag=='cricket':
-        url = "https://www.cricbuzz.com/cricket-match/live-scores"
-        response = requests.get(url)
-        
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            index = 0
-            x = ""
-            
-            # Find the live match updates
-            live_matches = soup.find_all('div', class_='cb-mtch-lst cb-col cb-col-100 cb-tms-itm')
+        urls = ["https://www.cricbuzz.com/cricket-match/live-scores", "https://www.cricbuzz.com/cricket-match/live-scores/recent-matches", "https://www.cricbuzz.com/cricket-match/live-scores/upcoming-matches"]
+        x = "<ul style='margin-left: 20px;'>"
+        for url in urls:
+            response = requests.get(url)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                index = 0
+                
+                type = url.split('/')[-1]
+                print("type: ->", type)
+                if type == "live-scores":
+                    type="Live Matches"
+                elif type == 'recent-matches':
+                    type='Recent Matches'
+                elif type == 'upcoming-matches':
+                    type='Upcoming Matches'
+                x+=f"<li>{type}</li>"
+                x += "<ol style='margin-left: 30px;'>"
+                
+                # Find the live match updates
+                live_matches = soup.find_all('div', class_='cb-mtch-lst cb-col cb-col-100 cb-tms-itm')
 
-            if not live_matches:
-                return "No live matches found.", 'cricket'
+                if not live_matches:
+                    x+= "No matches found."
             
             for match in live_matches:
-                index += 1
                 srs = match.find('a', class_='text-hvr-underline text-bold').text.strip()
                 mnum = match.find('span', class_='text-gray').text.strip()
-                status = match.find('div', class_='cb-text-complete').text.strip()
-                
-                x += f"{index}. {srs} - {mnum} : {status} \n"
+                try:
+                    status = match.find('div', class_='cb-text-complete').text.strip()
+                except:
+                    try:
+                        status = match.find('div', class_='cb-text-live').text.strip()
+                    except:
+                        status = "Upcoming Match"
+
+                x += f"<li> {srs} - {mnum} : {status} </li>"
+            x+="</ol>"
+            x+="</li>"
         else:
             print("Failed to fetch cricket updates")
+        x+="</ul>"
         return x, 'cricket'
 
     if tag=='song':
+        import spotipy
+        from spotipy.oauth2 import SpotifyClientCredentials
         chart=billboard.ChartData('hot-100')
-        x='The top 10 songs at the moment are: \n'
+        x="The top 10 songs at the moment are: <ol style='margin-left: 20px;'>"
         for i in range(10):
             song=chart[i]
-            x+=str(i+1)+'. '+str(song.title)+'- '+str(song.artist) #+ "\t Listen: " + str(song.spotifyLink)
-            import spotipy
-            from spotipy.oauth2 import SpotifyClientCredentials
+            x+='<li>'+str(song.title)+'- '+str(song.artist) #+ "\t Listen: " + str(song.spotifyLink)
             client_id = '7262d1a4a55a46beb973fa784b78503f'
             client_secret = '9d3382e5e1ae483baaf676178143cc17'
             sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
@@ -143,11 +162,10 @@ def get_response(return_list,intents_json,text):
             if results['tracks']['total'] > 0:
                 track = results['tracks']['items'][0]
                 spotify_link = track['external_urls']['spotify']
-                x+=f"\t Spotify Link: {spotify_link}"
+                x+=f"<br>Spotify Link: <a href='{spotify_link}' target='_blank'> Click here </a></li>"
             else:
-                x+="\t Song not found on Spotify."
-            if i!=9:
-                x+='\n'
+                x+="<br>Song not found on Spotify.</li>"
+        x+='</ol>'
         return x,'songs'
 
     if tag=='timer':
@@ -163,14 +181,17 @@ def get_response(return_list,intents_json,text):
     if tag=='covid19':
         # Define the base URL for the disease.sh API
         base_url = "https://disease.sh/v3/covid-19"
-        country=text.split(':')[1].strip()
+        try:
+            country=text.split(':')[1].strip()
+        except:
+            country='world'
         x=''
         try:
             if country.lower()=='world':
                 global_data = requests.get(f"{base_url}/all").json()
             else:
                 global_data = requests.get(f"{base_url}/countries/{country.lower()}").json()
-            x+='Stats for COVID19: \nTodays Confirmed Cases:'+str(global_data['todayCases'])+'\nTodays Deaths:'+str(global_data['todayDeaths'])+'\nTodays Recovered:'+str(global_data['todayRecovered'])+'\nActive:'+str(global_data['active'])+'\nCritical:'+str(global_data['critical'])
+            x+=f'Stats for COVID19 for {country}: <br>Todays Confirmed Cases:'+str(global_data['todayCases'])+'<br>Todays Deaths:'+str(global_data['todayDeaths'])+'<br>Todays Recovered:'+str(global_data['todayRecovered'])+'<br>Active:'+str(global_data['active'])+'<br>Critical:'+str(global_data['critical'])
             return x,'covid19'
         except Exception as e:
             print("error: ", e)
