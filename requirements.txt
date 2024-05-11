@@ -1,5 +1,6 @@
 keras==2.8.0
 tensorflow==2.8.2
+gunicorn
 nltk
 requests
 billboard.py
