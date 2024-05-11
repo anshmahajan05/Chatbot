@@ -221,6 +221,7 @@ def home():
 
 @app.route("/get")
 def chatbot():
-    userText = request.args.get('msg')
+    userText = str(request.args.get('msg'))
+    print(userText)
     resp=response(userText)
     return resp
