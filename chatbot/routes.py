@@ -230,5 +230,6 @@ def chatbot():
         print(userText)
         resp=response(userText)
     except Exception as e:
-        resp=e
+        error_message = "An error occurred: " + str(e)
+        resp = error_message
     return resp
