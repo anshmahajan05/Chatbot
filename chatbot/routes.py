@@ -213,17 +213,17 @@ def response(text):
 
 
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 #@app.route('/home',methods=['GET','POST'])
 def yo():
     return render_template('main.html')
 
-@app.route('/chat',methods=['GET','POST'])
+@app.route('/chat', methods=['GET','POST'])
 #@app.route('/home',methods=['GET','POST'])
 def home():
     return render_template('index.html')
 
-@app.route("/get")
+@app.route("/get", methods=['GET','POST'])
 def chatbot():
     try:
         userText = str(request.args.get('msg'))
