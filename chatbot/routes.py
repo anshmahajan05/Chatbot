@@ -225,7 +225,10 @@ def home():
 
 @app.route("/get")
 def chatbot():
-    userText = str(request.args.get('msg'))
-    print(userText)
-    resp=response(userText)
+    try:
+        userText = str(request.args.get('msg'))
+        print(userText)
+        resp=response(userText)
+    except Exception as e:
+        resp=e
     return resp
