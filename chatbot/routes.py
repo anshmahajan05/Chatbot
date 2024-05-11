@@ -4,7 +4,11 @@ from chatbot.forms import chatbotform
 from chatbot.__init__ import model,words,classes,intents
 from bs4 import BeautifulSoup
 import nltk
-nltk.download('all')
+
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('stopwords')
+
 import pickle
 import json
 import numpy as np
